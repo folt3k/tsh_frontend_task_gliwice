@@ -1,0 +1,10 @@
+<div class="modal-container">
+  <span class="close" (click)="modalService.close()">&times;</span>
+  <h2>Payment <span>#{{modalService.payment.payment_ref}}</span> details</h2>
+  <p><span>Supplier name: </span>{{modalService.payment.payment_supplier}}</p>
+  <p>
+    <span>Pound rating: </span><br>
+    <span *ngFor="let i of ratingArr" class="rating-icon" [ngClass]="{'rating-icon-blue':i<=modalService.payment.payment_cost_rating, 'rating-icon-white':i>modalService.payment.payment_cost_rating}">£</span>
+  </p>
+  <p><span>Payment value: </span><span class="payment-value">£{{modalService.payment.payment_amount}}</span></p>
+</div>

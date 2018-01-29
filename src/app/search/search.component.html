@@ -1,0 +1,18 @@
+<section class="search-section">
+    <form (ngSubmit)="search()">
+      <input type="text" name="query" placeholder="Search suppliers" [(ngModel)]="model.query">
+      <div class="select-container">
+        <select name="rating" [(ngModel)]="model.rating">
+          <option disabled selected="selected" value="">Select pound rating</option>
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+          <option [ngValue]="4">4</option>
+          <option [ngValue]="5">5</option>
+
+        </select>
+      </div>
+      <button type="button" name="button" class="reset-btn" (click)="reset()">Reset</button>
+      <input type="submit" name="button" value="Search" class="search-btn">
+    </form>
+  </section>

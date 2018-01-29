@@ -1,0 +1,39 @@
+<app-modal *ngIf="modalService.payment"></app-modal>
+<app-search (emitResults)="showResults($event)"></app-search>
+
+<section class="table-section">
+  <p class="error" *ngIf="err">Wystąpił błąd! Nie znaleziono żadnych wyników.</p>
+  <table *ngIf ="!err" cellspacing="0" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Supplier</th>
+        <th>Pound Rating</th>
+        <th>Reference</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments" (click)="modalService.show(payment)">
+        <th scope="row">{{ payment.payment_supplier }}</th>
+        <td>
+          <span *ngFor="let i of ratingArr" class="rating-icon" [ngClass]="{'rating-icon-blue':i<=payment.payment_cost_rating, 'rating-icon-white':i>payment.payment_cost_rating}">£</span>
+        </td>
+        <td>{{ payment.payment_ref }}</td>
+        <td>£{{ payment.payment_amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<div class="pagination-container">
+    <ul>
+      <li *ngIf="pagination.left"><a (click)="paginate(toNumber(pagination.current)-1)"><img src="assets/images/left-angle.png" alt=""></a></li>
+      <li *ngFor="let key of links;">
+        <a [ngClass]="{'active':key==pagination.current}" (click)="paginate(key)">
+          {{ toNumber(key)+1 }}
+        </a>
+      </li>
+      <li *ngIf="pagination.right"><a (click)="paginate(toNumber(pagination.current)+1)"><img src="assets/images/right-angle.png" alt=""></a></li>
+    </ul>
+  </div>
